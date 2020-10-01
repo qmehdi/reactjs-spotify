@@ -3,6 +3,7 @@ import "./App.css";
 import Login from './Login';
 import { getTokenFromUrl } from './spotify';
 import SpotifyWebApi from "spotify-web-api-js";
+import Player from "./Player";
 
 // Super object that's responsible for interaction between our React app and Spotify
 // Create an instance of SpotifyWebApi
@@ -44,7 +45,7 @@ function App() {
     <div className="app">
       {
         token ? (
-          <h1>I am logged in</h1>
+          <Player />
         ) : ( <Login /> )
       }
     </div>
