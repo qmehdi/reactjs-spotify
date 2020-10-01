@@ -14,7 +14,7 @@ function App() {
   const [token, setToken] = useState(null);
   
   // Grab objects from the DataLayer
-  const [{}, dispatch] = useDataLayerValue();
+  const [{ DataLayer }, dispatch] = useDataLayerValue();
 
   /* Run code based on a given condition
      This useEffect will run either when the component first loads and/or
@@ -36,14 +36,25 @@ function App() {
       spotify.setAccessToken(_token);
 
       // async call that returns a promise
-      spotify.getMe().then(user => {
-        console.log('yo', user);
+      spotify.getMe()
+        .then(user => {
+
+          // Shoot the user object into the DataLayer
+          dispatch({
+            type: 'SET_USER',
+            user: user,
+          })
       });
     }
 
     console.log(' i have a token >>>', token);
 
   }, []);
+
+  /* This DataLayer?.user refers to the { DataLayer } above in the DataLayer. 
+     This console.log is a good test to make sure we're able to pull down an object from DataLayer
+  */
+  console.log('This is coming from the DataLayer >>>> ', DataLayer?.user);
 
   return (
     <div className="app">
