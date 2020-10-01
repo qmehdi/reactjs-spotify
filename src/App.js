@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Login from './Login';
 import { getTokenFromUrl } from './spotify';
+import SpotifyWebApi from "spotify-web-api-js";
+
+// Super object that's responsible for interaction between our React app and Spotify
+// Create an instance of SpotifyWebApi
+const spotify = new SpotifyWebApi();
 
 function App() {
   const [token, setToken] = useState(null);
@@ -19,7 +24,16 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
-      setToken(_token)
+      setToken(_token);
+
+      // Giving access token to the spotify api
+      // Here's your magic key that will allow the react app to interact with spotify api
+      spotify.setAccessToken(_token);
+
+      // async call that returns a promise
+      spotify.getMe().then(user => {
+        console.log('yo', user);
+      });
     }
 
     console.log(' i have a token >>>', token);
