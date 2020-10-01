@@ -4,6 +4,7 @@ import Login from './Login';
 import { getTokenFromUrl } from './spotify';
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./Player";
+import { useDataLayerValue } from './DataLayer';
 
 // Super object that's responsible for interaction between our React app and Spotify
 // Create an instance of SpotifyWebApi
@@ -11,6 +12,9 @@ const spotify = new SpotifyWebApi();
 
 function App() {
   const [token, setToken] = useState(null);
+  
+  // Grab objects from the DataLayer
+  const [{}, dispatch] = useDataLayerValue();
 
   /* Run code based on a given condition
      This useEffect will run either when the component first loads and/or
