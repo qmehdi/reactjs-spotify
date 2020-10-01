@@ -11,10 +11,9 @@ import { useDataLayerValue } from './DataLayer';
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [token, setToken] = useState(null);
-  
+ 
   // Grab objects from the DataLayer
-  const [{ DataLayer }, dispatch] = useDataLayerValue();
+  const [{ user, token }, dispatch] = useDataLayerValue();
 
   /* Run code based on a given condition
      This useEffect will run either when the component first loads and/or
@@ -29,7 +28,10 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
-      setToken(_token);
+      dispatch({
+        type: 'SET_TOKEN',
+        token: _token,
+      })
 
       // Giving access token to the spotify api
       // Here's your magic key that will allow the react app to interact with spotify api
@@ -54,7 +56,9 @@ function App() {
   /* This DataLayer?.user refers to the { DataLayer } above in the DataLayer. 
      This console.log is a good test to make sure we're able to pull down an object from DataLayer
   */
-  console.log('This is coming from the DataLayer >>>> ', DataLayer?.user);
+  console.log('This is coming from the DataLayer >>>> ', user);
+  console.log('This token is coming from DataLayer >>>> ', token);
+
 
   return (
     <div className="app">
