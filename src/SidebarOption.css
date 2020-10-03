@@ -1,10 +1,10 @@
 .sidebarOption {
-  display: flex;
+  display: flex; /* Puts items in rows */
   cursor: pointer;
   align-items: center;
   height: 40px;
   color: grey;
-  transition: 200ms color ease-in;
+  transition: 200ms color ease-in; /* Slight animation upon hover */
 }
 
 .sidebarOption:hover {
