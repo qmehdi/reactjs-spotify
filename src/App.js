@@ -13,7 +13,7 @@ const spotify = new SpotifyWebApi();
 function App() {
  
   // Grab objects from the DataLayer
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ user, token, playlists }, dispatch] = useDataLayerValue();
 
   /* Run code based on a given condition
      This useEffect will run either when the component first loads and/or
@@ -47,6 +47,14 @@ function App() {
             user: user,
           })
       });
+
+      // Fetch the user's playlists and dispatch them into the DataLayer
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playlists,
+        })
+      })
     }
 
     console.log(' i have a token >>>', token);
@@ -58,6 +66,7 @@ function App() {
   */
   console.log('This is coming from the DataLayer >>>> ', user);
   console.log('This token is coming from DataLayer >>>> ', token);
+  console.log(' Playlists in the state are ##### ', playlists?.items);
 
 
   return (
