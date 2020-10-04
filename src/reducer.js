@@ -3,8 +3,8 @@ export const initialState = {
     playlists: [],
     playing: false,
     item: null,
-    // token: null,
-    token: 'BQABg2Qxg0njAES7GkZFS01kVQAqV0XNoJljdcM48wpg_UDt5TmzRqNcTuJ8nsyDg_raJ2RRfn9cBgL33ROXdJ7eKOz1XHjSrivbt3kEM56e18o9wvbTMMYT5KsYU_IMcZjr-iT0p71M6lqCYzkJ5O3Dt6eyvgfpAV6m8HUf7frWrGUVM6KO',
+    token: null,
+    // token: 'BQABg2Qxg0njAES7GkZFS01kVQAqV0XNoJljdcM48wpg_UDt5TmzRqNcTuJ8nsyDg_raJ2RRfn9cBgL33ROXdJ7eKOz1XHjSrivbt3kEM56e18o9wvbTMMYT5KsYU_IMcZjr-iT0p71M6lqCYzkJ5O3Dt6eyvgfpAV6m8HUf7frWrGUVM6KO',
 }
 
 /* 
@@ -30,6 +30,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 playlists: action.playlists,
+            }
+        case 'SET_DISCOVER_WEEKLY':
+            return {
+                ...state,
+                discover_weekly: action.discover_weekly,
             }
         // default is a catchall that returns the same state so the app doesn't break
         default:

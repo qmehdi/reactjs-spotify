@@ -55,13 +55,23 @@ function App() {
           playlists: playlists,
         })
       })
+
+      spotify.getPlaylist('3hBBPbP7rnZvPKNdca0QXL').then(response => {
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+        })
+      })
+
     }
 
     console.log(' i have a token >>>', token);
 
   }, []);
 
-  /* This DataLayer?.user refers to the { DataLayer } above in the DataLayer. 
+
+
+  /*  
      This console.log is a good test to make sure we're able to pull down an object from DataLayer
   */
   console.log('This is coming from the DataLayer >>>> ', user);
