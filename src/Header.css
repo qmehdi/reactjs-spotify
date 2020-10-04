@@ -12,9 +12,10 @@
 .header__left {
   flex: 0.5;
   display: flex;
+  min-width: 70px; /* Useful for when screen width shrinks */
   background-color: white;
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 30px; /* rounded edge */
   color: gray;
   align-items: center;
 }
@@ -22,6 +23,7 @@
 .header__left > input {
   border: none;
   width: 100%;
+  outline-width: 0; /* Gets rid of blue border in search bar */
 }
 
 .header__right > h4 {
